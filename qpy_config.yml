@@ -1,0 +1,17 @@
+short_name: llm_teacher
+namespace: qpy
+version: 0.1.0
+api_version: '0.1'
+author: innoCampus <info@isis.tu-berlin.de>
+name:
+  de: LLM Lehrer
+  en: LLM Teacher
+description:
+  de: Automatisiertes Bewerten!
+  en: Automated scoring!
+languages:
+  - de
+  - en
+requirements:
+  - openai
+  - pydantic
