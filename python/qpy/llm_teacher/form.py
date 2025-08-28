@@ -1,4 +1,4 @@
-from pydantic import field_validator
+from pydantic import field_validator, ValidationInfo
 
 from questionpy.form import FormModel, checkbox, is_not_checked, text_area, text_input
 
@@ -12,7 +12,7 @@ class MyModel(FormModel):
 
     @field_validator("knowledge", mode="after")
     @classmethod
-    def context_required(cls, value, values):
-        if values.data["with_knowledge"] and not value:
-            raise ValueError("Knowledge is required when 'Custom Knowledge' is not checked.")
+    def context_required(cls, value: str | None, validation_info: ValidationInfo):
+        if validation_info.data["with_knowledge"] and not value:
+            raise ValueError("Knowledge is required when 'Custom Knowledge' is checked.")
         return value

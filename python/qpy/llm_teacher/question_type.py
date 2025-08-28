@@ -5,11 +5,11 @@ from .form import MyModel
 
 
 class MyScoringState(BaseScoringState):
-    feedback: str = "<div>No feedback yet.</div>"
+    feedback: str
 
 
 class MyAttempt(Attempt):
-    scoring_state_class = MyScoringState
+    scoring_state: MyScoringState
 
     def _init_attempt(self) -> None:
         self.use_css("styles.css")
@@ -26,18 +26,19 @@ class MyAttempt(Attempt):
             msg = f"Could not get the LLM response: {e}"
             raise NeedsManualScoringError(msg) from e
 
-        feedback = self.jinja2.get_template("feedback.xhtml.j2").render(feedback=scoring.feedback)
-        self.scoring_state = MyScoringState(feedback=feedback)
+        self.scoring_state = MyScoringState(feedback=scoring.feedback)
 
         return scoring.score
 
     @property
     def formulation(self) -> str:
-        return self.jinja2.get_template("formulation.xhtml.j2").render(question=self.question.options.question)
+        return self.jinja2.get_template("formulation.xhtml.j2").render()
 
     @property
-    def general_feedback(self) -> str:
-        return self.scoring_state.feedback if self.scoring_state else ""
+    def specific_feedback(self) -> str | None:
+        if self.scoring_state:
+            return self.jinja2.get_template("feedback.xhtml.j2").render()
+        return None
 
 
 class MyQuestion(Question):
