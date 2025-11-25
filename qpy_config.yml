@@ -15,3 +15,7 @@ languages:
 requirements:
   - openai
   - pydantic
+environment_variables:
+  - OPENAI_API_KEY
+  - OPENAI_BASE_URL
+  - OPENAI_MODEL

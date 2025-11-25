@@ -4,13 +4,9 @@ from openai.types.chat import ChatCompletionSystemMessageParam, ChatCompletionUs
 from pydantic import BaseModel
 
 
-BASE_URL = "http://localhost:14792/v1"
-MODEL = "shuyuej/Llama-3.3-70B-Instruct-GPTQ"
-
-API_KEY = os.environ.get("LLM_TEACHER_API_KEY")
-if not API_KEY:
-    msg = "Please set the LLM_TEACHER_API_KEY environment variable."
-    raise ValueError(msg)
+API_KEY = os.environ["OPENAI_API_KEY"]
+BASE_URL = os.environ["OPENAI_BASE_URL"]
+MODEL = os.environ["OPENAI_MODEL"]
 
 SYSTEM_PROMPT_TEMPLATE = (
     "You are a teacher tasked with grading an answer to a specific question. Based on the provided knowledge and the "
