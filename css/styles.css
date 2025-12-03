@@ -1,22 +1,21 @@
-p, textarea {
-    font-family: Arial, sans-serif;
+.formulation:has(+ div .llm_teacher-feedback) {
+    margin-bottom: 10px;
 }
 
-p.question {
+.llm_teacher-formulation p {
     font-size: 20px;
 }
 
-p.feedback {
+.llm_teacher-feedback p {
     font-size: 15px;
 }
 
-textarea {
-    width: 90%;
-    max-width: 90%;
+.llm_teacher-formulation textarea {
+    width: calc(100% - 4px) !important;
+    max-width: 700px;
     min-height: 150px;
+    margin-left: 4px;
+    margin-bottom: 4px;
     padding: 15px;
     font-size: 16px;
-    border-radius: 8px;
-    outline: none;
-    resize: none;
 }

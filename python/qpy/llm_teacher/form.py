@@ -1,10 +1,10 @@
 from pydantic import field_validator, ValidationInfo
 
-from questionpy.form import FormModel, checkbox, is_not_checked, text_area, text_input
+from questionpy.form import FormModel, checkbox, is_not_checked, text_area
 
 
 class MyModel(FormModel):
-    question = text_input("Question", required=True)
+    question = text_area("Question", required=True)
     with_knowledge = checkbox(
         "Custom Knowledge", None, help="If selected, your custom knowledge will be used to score the answer."
     )

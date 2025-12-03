@@ -4,10 +4,6 @@ from openai.types.chat import ChatCompletionSystemMessageParam, ChatCompletionUs
 from pydantic import BaseModel
 
 
-API_KEY = os.environ["OPENAI_API_KEY"]
-BASE_URL = os.environ["OPENAI_BASE_URL"]
-MODEL = os.environ["OPENAI_MODEL"]
-
 SYSTEM_PROMPT_TEMPLATE = (
     "You are a teacher tasked with grading an answer to a specific question. Based on the provided knowledge and the "
     "answer, generate a JSON object containing:\n"
@@ -41,9 +37,9 @@ def score_answer(knowledge: str, question: str, answer: str) -> Scoring:
 
     user_message: ChatCompletionUserMessageParam = {"role": "user", "content": answer}
 
-    with OpenAI(api_key=API_KEY, base_url=BASE_URL) as client:
+    with OpenAI(api_key=os.environ["OPENAI_API_KEY"], base_url=os.environ["OPENAI_BASE_URL"]) as client:
         completion = client.chat.completions.parse(
-            model=MODEL,
+            model=os.environ["OPENAI_MODEL"],
             messages=[system_message, user_message],
             response_format=Scoring,
         )
