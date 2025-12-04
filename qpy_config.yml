@@ -7,8 +7,8 @@ name:
   de: LLM Lehrer
   en: LLM Teacher
 description:
-  de: Automatisiertes Bewerten!
-  en: Automated scoring!
+  de: Automatisiertes Feedback mittels KI. Bitte nur bei freiwilligen Abgaben nutzen. (experimentell)
+  en: Automated feedback with AI. Please only use for voluntary submissions. (experimental)
 languages:
   - de
   - en
